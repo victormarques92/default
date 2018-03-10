@@ -1,0 +1,27 @@
+Para iniciar o projeto faça o clone:
+
+git clone https://github.com/vmw92/default.git
+
+Vá para a pasta do projeto e execute o npm install para instalar todas as dependências dele:
+
+$ npm install
+
+
+Dependências Gulp:
+Gulp                    [3.9.1]
+browser-sync            [2.23.6] //Roda um serevidor local
+gulp-autoprefixer       [5.0.0] //--
+gulp-concat             [2.6.1] //Concatena os arquivos em um só
+gulp-file-include       [2.0.1] //Automatiza os includes das páginas
+gulp-imagemin           [4.1.0] //Minifica as imagens
+gulp-htmlmin            [4.0.0] //Minifica o html
+gulp-rename             [1.2.2] //Renomeia os arquivos
+gulp-sass               [3.1.0] //Compila o Sass para CSS
+gulp-sass-import-once   [2.0.2] //Importar todos os arquivos SCSS
+gulp-sourcemaps         [1.6.0] //Mapeia os arquivos para debug
+gulp-watch              [5.0.0] //Acompanha as atualizações dos arquivos
+gulp-util               [3.0.8] //Muda a coloração dos erros no log
+gulp-uglify             [3.0.0] //Minifica o JS
+gulp-plumber            [1.2.0] //Não para o gulp caso tenha algum erro
+
+O projeto já contém GRID do Bootstrap 4.
