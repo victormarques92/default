@@ -1,0 +1,22 @@
+@import "all";
+//===============================================
+//                                         Fontes
+//===============================================
+.font-large { @extend .font-32; }
+
+.font-regular { @extend .font-16; }
+
+.font-small { @extend .font-11; }
+
+.font-large, .font-regular, .font-small {
+    font-weight: 400;
+    &.light {
+        font-weight: 300;
+    }
+    &.bold {
+        font-weight: 700;
+    }
+    &.italic {
+        font-style: italic;
+    }
+}

@@ -1,4 +1,20 @@
 // PADRÃO DE ELEMENTOS DO PROJETO
+@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400,700');
 * {
+    font-family: 'Oxygen', sans-serif;
     font-size: 10px;
+    outline: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
 }
