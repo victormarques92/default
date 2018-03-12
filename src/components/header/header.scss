@@ -1,3 +1,10 @@
-@import "scss/all";
+@import "../../scss/variables";
 
-// CSS DO HEADER
+html {
+    &::before {
+        content: '';
+        display: block;
+        height: 5px;
+        background: linear-gradient(to right, $secundary, $primary);
+    }
+}

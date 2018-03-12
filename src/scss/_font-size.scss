@@ -1,0 +1,8 @@
+//font size
+@for $i from 8 through 100 {
+	@if($i % 2 == 0 OR $i < 20) {
+		.font-#{$i} {
+			font-size: ($i /10)*1rem;
+		}
+	}
+}
