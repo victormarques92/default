@@ -7,7 +7,6 @@ var imagemin        = require('gulp-imagemin');
 var htmlmin         = require('gulp-htmlmin');
 var rename          = require('gulp-rename');
 var sass            = require('gulp-sass');
-var importOnce      = require('gulp-sass-import-once');
 var sourcemaps      = require('gulp-sourcemaps');
 var watch           = require('gulp-watch');
 var util            = require('gulp-util');
@@ -20,7 +19,6 @@ var uglify          = require('gulp-uglify');
 // Bundle CSS || Chamar todos os arquivos .css e .scss para gerar uma variável de CSS geral
 var cssBundle = [
     'src/scss/*.scss',
-    'src/scss/**/*.scss',
     'src/components/**/*scss'
 ];
 
@@ -64,7 +62,6 @@ gulp.task('build:cssBundle', function() {
 
     return gulp
     .src(cssBundle)
-    .pipe(importOnce())
     .pipe(sourcemaps.init())
     .pipe(sass(sassOption).on('error', sass.logError))
     .pipe(autoprefixer({
@@ -84,6 +81,7 @@ gulp.task('build:jsBundle', function() {
     .pipe(uglify())
     .pipe(concat('bundle.min.js'))
     .pipe(gulp.dest('dist/js'))
+    .pipe(browserSync.stream());
 });
 
 /*****|| HTML ||*****/
@@ -95,6 +93,7 @@ gulp.task('build:html', function() {
     }))
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.stream());
 });
 
 /*****|| IMAGE ||*****/
@@ -103,6 +102,7 @@ gulp.task('build:imgBundle', function() {
     .src(imgBundle)
     .pipe(imagemin())
     .pipe(gulp.dest('dist/image'))
+    .pipe(browserSync.stream());
 });
 
 /*****|| RELOAD ||*****/
