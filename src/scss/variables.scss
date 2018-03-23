@@ -7,9 +7,13 @@ $primary: #F4645F;
 $secundary: #F4976B;
 $support: #DD745D;
 
+$light: #EEE;
+
 //===============================================
 //                                Cores de fontes
 //===============================================
-$black: #000;
-$white: #FFF;
-$graphite: #333;
+$colors: (
+    black: #000,
+    white: #FFF,
+    graphite: #333
+)

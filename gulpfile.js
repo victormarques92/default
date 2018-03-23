@@ -7,10 +7,12 @@ var imagemin        = require('gulp-imagemin');
 var htmlmin         = require('gulp-htmlmin');
 var rename          = require('gulp-rename');
 var sass            = require('gulp-sass');
+var sassImportOnce  = require('gulp-sass-import-once');
 var sourcemaps      = require('gulp-sourcemaps');
 var watch           = require('gulp-watch');
 var util            = require('gulp-util');
 var uglify          = require('gulp-uglify');
+
 
 //=========================================================
 //                                                Variáveis
@@ -18,14 +20,13 @@ var uglify          = require('gulp-uglify');
 
 // Bundle CSS || Chamar todos os arquivos .css e .scss para gerar uma variável de CSS geral
 var cssBundle = [
-    'src/scss/*.scss',
-    'src/components/**/*scss'
+    'src/components/**/*.scss'
 ];
 
 // Bundle JS || Chamar todos os arquivos .js para gerar uma variável de JS geral
 var jsBundle = [
     'src/js/*.js',
-    'src/js/**/*.js'
+    'src/components/**/*.js'
 ];
 
 // Includes HTML || chamar todos os arquivos HTML para inclusão
@@ -61,8 +62,9 @@ gulp.task('build:cssBundle', function() {
     };
 
     return gulp
-    .src(cssBundle)
+    .src(['src/scss/all.scss', 'src/components/**/*.scss'])
     .pipe(sourcemaps.init())
+    /*.pipe(sassImportOnce())*/
     .pipe(sass(sassOption).on('error', sass.logError))
     .pipe(autoprefixer({
         browsers: ['ie >= 10', 'last 10 versions'],
@@ -73,6 +75,28 @@ gulp.task('build:cssBundle', function() {
     .pipe(gulp.dest('dist/css'))
     .pipe(browserSync.stream());
 });
+
+// gulp.task('build:cssBundle', function() {
+//     var sassOption = {
+//         errLogToConsole: true,
+//         outputStyle: 'expanded'
+//     };
+//
+//     return gulp
+//     .src('src/scss/all.scss')
+//     .pipe(sourcemaps.init())
+//     .pipe(sass(sassOption).on('error', sass.logError))
+//     .pipe(autoprefixer({
+//         browsers: ['ie >= 10', 'last 10 versions'],
+//         cascade: false
+//     }))
+//     .pipe(sourcemaps.write('stylesheets/maps'))
+//     .pipe(concat('bundle.min.css'))
+//     .pipe(gulp.dest('dist/css'))
+//     .pipe(browserSync.stream());
+// });
+
+
 
 /*****|| JS ||*****/
 gulp.task('build:jsBundle', function() {
@@ -93,7 +117,7 @@ gulp.task('build:html', function() {
     }))
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest('dist/'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.reload({stream:true}))
 });
 
 /*****|| IMAGE ||*****/
@@ -101,8 +125,8 @@ gulp.task('build:imgBundle', function() {
     return gulp
     .src(imgBundle)
     .pipe(imagemin())
-    .pipe(gulp.dest('dist/image'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('dist/images'))
+    .pipe(browserSync.reload({stream:true}))
 });
 
 /*****|| RELOAD ||*****/

@@ -1,0 +1,121 @@
+@import "../../scss/all";
+@import "../../scss/variables";
+
+#navbar {
+    background: $light;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+    .container {
+        display: flex;
+        justify-content: space-between;
+        .brand {
+            max-width: 100px;
+            img {
+                width: 100%;
+            }
+        }
+        #menu-mobile {
+            display: none;
+        }
+        .lista-menu {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            ul {
+                display: flex;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                justify-content: flex-end;
+                .btn-close {
+                    display: none;
+                }
+                li {
+                    height: 100%;
+                    a {
+                        position: relative;
+                        overflow: hidden;
+                        display: flex;
+                        height: 100%;
+                        align-items: center;
+                        padding: 0 15px;
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            display: block;
+                            width: 100%;
+                            height: 0%;
+                            top: calc(100% / 2);
+                            background: linear-gradient(to right, $secundary, $primary);
+                            left: 0;
+                            transition: .25s ease all;
+                        }
+                        span {
+                            @extend .color-graphite;
+                            z-index: 10;
+                        }
+                        &:hover {
+                            &::before {
+                                top: 0;
+                                height: 100%;
+                            }
+                            span {
+                                @extend .color-white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width: 992px) {
+    #navbar {
+        .container {
+            .lista-menu {
+                #menu-mobile {
+                    display: flex;
+                    align-items: center;
+                    color: $primary;
+                }
+                ul {
+                    display: block;
+                    position: absolute;
+                    height: 100vh;
+                    top: 0;
+                    right: -200px;
+                    width: 200px;
+                    padding-top: 50px;
+                    background: linear-gradient(to right, $secundary, $primary);
+                    transition: .25s ease all;
+                    z-index: 9999;
+                    .btn-close {
+                        display: block;
+                        position: absolute;
+                        width: 40px;
+                        height: 40px;
+                        right: 10px;
+                        top: 10px;
+                        color: #FFF;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                    }
+                    li {
+                        height: 60px;
+                        a {
+                            span {
+                                color: #FFF;
+                            }
+                        }
+                    }
+                    &.active {
+                        right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
